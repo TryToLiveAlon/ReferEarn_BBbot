@@ -11,6 +11,16 @@
 CMD*/
 
 // Get the user ID of the person who sent the command
+if (request.data) {
+  var chatID = request.message.chat_id
+  var messageID = request.message.message_id
+
+  Api.deleteMessage({
+    chat_id: chatID,
+    message_id: messageID
+  })
+}
+
 var userID = params;
 
 // Retrieve stored transactions
