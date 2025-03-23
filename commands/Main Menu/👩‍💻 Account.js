@@ -78,20 +78,16 @@ var userID = user.telegramid
 var userLink = "<a href='tg://user?id=" + userID + "'>" + userName + "</a>"
 var currency = Bot.getProperty("currency")
 var balance = Libs.ResourcesLib.userRes("balance")
-var text =
-  "<b>🧒 User : " +
-  userName +
-  "\n🔗 User link : " +
-  userLink +
-  "\n👉 Username : " +
-  username +
-  "\n🆔 User ID :</b> <code>" +
-  userID +
-  "</code>\n\n<b>💸 Balance :</b> <code>" +
-  balance.value().toFixed(2) +
-  " " +
-  currency +
-  "</code>"
+var text = `<b>👤 user account info:</b>
+
+🧒 <b>Name:</b> ${userName}  
+🔗 <b>Profile:</b> <a href="${userLink}">Click Here</a>  
+💬 <b>Username:</b> <code>${username}</code>  
+🆔 <b>User ID:</b> <code>${userID}</code>  
+
+💰 <b>Wallet Balance:</b>  
+<code>💸 ${balance.value().toFixed(2)} ${currency}</code>`;
+
 
 Api.sendPhoto({
   photo: "https://i.ibb.co/7JGjmc1c/create-new-account-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-em.jpg",
@@ -101,4 +97,5 @@ Api.sendPhoto({
     },
   parse_mode: "html"
 })
+
 
