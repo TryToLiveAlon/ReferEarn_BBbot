@@ -62,6 +62,7 @@ You can easily configure your bot after setup by giving the command `/adminPanel
 - There can be three public channel 2 in force join and one payment alert channel.
 - There is one private/public channel which eill handle payment request it is joined only by admin. You can use chatID of chat if you dont have public channel.
 - Bouns Time Interval can be changed.(Default is 24hrs)
+- Set Your own customised currency.
 ---
 
 ## 🖼️ Screenshots  
