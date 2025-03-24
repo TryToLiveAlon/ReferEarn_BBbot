@@ -1,14 +1,12 @@
 /*CMD
   command: /setMaintenanceStatus
   help: 
-  need_reply: true
+  need_reply: false
   auto_retry_time: 
   folder: Admin Panel
 
   <<ANSWER
-*🛠️ Send the mode which you want to set as maintenance status from the options below 👇
 
-👉 Options :* `On` */* `Off`
   ANSWER
 
   <<KEYBOARD
@@ -18,42 +16,35 @@
   group: 
 CMD*/
 
-var admin = Bot.getProperty("admin")
-var users = user.telegramid
-var botLink = "@" + bot.name
+if (request.data) {
+  var chatID = request.message.chat_id
+  var messageID = request.message.message_id
+
+  Api.deleteMessage({
+    chat_id: chatID,
+    message_id: messageID
+  })
+}
+var admin = Bot.getProperty("admin");
+var users = user.telegramid;
 
 if (users === admin) {
-  var maintenance = message
+  var currentStatus = Bot.getProperty("maintenanceStatus", "Off"); // Default to "Off"
+  var newStatus = currentStatus === "On" ? "Off" : "On"; // Toggle status
 
-  if (maintenance === "On" || maintenance === "Off") {
-    Bot.setProperty("maintenanceStatus", maintenance, "string")
+  Bot.setProperty("maintenanceStatus", newStatus, "string");
 
-    var text =
-      "<b>🛠️ Maintenance status set to :</b> <code>" + maintenance + "</code>"
-
-    Api.sendMessage({
-      text: text,
-      parse_mode: "html"
-    })
-
-    Bot.runCommand("/adminPanel")
-  } else {
-    var notText =
-      "<i>⚠️ Send only</i> <code>On</code> <i>or</i> <code>Off</code>."
-
-    Api.sendMessage({
-      text: notText,
-      parse_mode: "html"
-    })
-
-    Bot.runCommand("/setMaintenanceStatus")
-  }
+  Api.answerCallbackQuery({
+    callback_query_id: request.id,
+    text: "Bot Maintenance Status Changed To: " + newStatus,
+    show_alert: true
+  });
+  Bot.runCommand("/adminPanel")
 } else {
-  var notAdminText = "<i>⚠️ You're not the admin of " + botLink + ".</i>"
-
-  Api.sendMessage({
-    text: notAdminText,
-    parse_mode: "html"
-  })
+  Api.answerCallbackQuery({
+    callback_query_id: request.id,
+    text: "⚠️ You are not the admin!",
+    show_alert: true
+  });
 }
 

@@ -50,13 +50,6 @@ if (!newUser) {
   })
 }
 
-var broadcast = Bot.getProperty("Broadcast") ? Bot.getProperty("Broadcast") : []
-
-if (!broadcast.includes(user.telegramid)) {
-  broadcast.push(user.telegramid)
-  Bot.setProperty("Broadcast", broadcast, "json")
-}
-
 function doTouchOwnLink() {
   var ownText = "<i>⚠️ You can't invite yourself.</i>"
 

@@ -1,82 +1,84 @@
+# Cloned bot: ReferEarn_BBbot - chat bot
+It is repository for chat bot: [@Cloned bot: ReferEarn_BBbot](https://t.me/Cloned bot: ReferEarn_BBbot)
 
-# ReferEarn_BBbot - Telegram bot
+## What it is?
+This repository can be imported to [Bots.Business](https://bots.business) as a worked chat bot.
 
-![ReferEarn_BBbot](https://i.ibb.co/rRTtmPJ8/1-20250322-204534-0000.jpg)  
+[Bots.Business](https://bots.business) - it is probably the first CBPaaS - Chat Bot Platform as a Service.
 
-If my Bot win upload this as the main bot screen for BB Store. 
+A CBPaaS is a cloud-based platform that enables developers to create chatbots without needing to build backend infrastructure.
 
-This is the official repository for **ReferEarn_BBbot**, a bot that can be imported into [Bots.Business](https://bots.business) to manage referral earnings on Telegram.  
+## Create your own bot for Telegram from this Git repo
 
-## 📌 What is it?  
-ReferEarn_BBbot is a **ready-to-use Telegram chatbot** designed for managing **referral programs** and **earning systems**. You can easily import this bot into [Bots.Business](https://bots.business), a **CBPaaS (Chat Bot Platform as a Service)** that helps developers create bots **without complex backend infrastructure**.  
+How to create bot?
+1. Create bot with [@BotFather](https://telegram.me/BotFather) and take Secret Token
+2. Create bot in App and add Secret Token
+3. Add Public Key from App as [Deploy key](https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys) with read access (and write access for bot exporting if you need it)
+4. Do import for this git repo
 
----
+Now you can talk with yours new Telegram Bot
 
-## 🚀 How to Create Your Own Telegram Bot  
+See [more](https://help.bots.business/getting-started)
 
-### 1️⃣ Set Up Your Bot  
-1. Go to [@BotFather](https://telegram.me/BotFather) on Telegram and create a new bot.  
-2. Copy the **Secret Token** provided.  
+## Commands - in commands folder
+File name - it is command name (Bot it can be rewritten in command description)
 
-### 2️⃣ Import This Repository  
-1. Go to [Bots.Business](https://bots.business) and create a new bot.  
-2. Add your **Secret Token** in the bot settings.  
-3. Add the provided **Public Key** from Bots.Business as a [Deploy Key](https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys) in this GitHub repo.  
-4. Import this repository into your bot.  
-5. Go to /adminLogin and replace this piece of code 
+Command can have: `name`, `help`, `aliases` (second names), `answer`, `keyboard`, `scnarios` (for simple logic) and other options.
 
-```js
-var admin = 6140468904
-```
+### Command description
+It is file header:
 
-with
-```js
-var admin = your-chat-id
-```
+    /*CMD
+      command: /test
+      help: this is help for ccommand
+      need_reply: [ true or false here ]
+      auto_retry_time: [ time in sec ]
+      answer: it is example answer for /test command
+      keyboard: button1, button2
+      aliases: /test2, /test3
+    CMD*/
 
-Dont know your chatID click on [@chat_id_echo_bot](https://t.me/chat_id_echo_bot)
-🎉 Now, your bot is live on Telegram!  
+See [more](https://help.bots.business/commands)
 
----
+### Command body
+It is command code in JavaScript.
+Use Bot Java Script for logic in command.
+
+For example:
+> Bot.sendMessage(2+2);
+
+See [more](https://help.bots.business/scenarios-and-bjs)
 
 
-## ⭐ Features
+## Libraries - in libs folder
+You can store common code in the libs folder. File name - it is library name.
 
-- Transaction history should store to 20 most recent transactions.
-- Users receive notifications about their withdrawal status.
-- Withdrawal requests are sent to an admin channel, where an admin approves or declines the request manually.
-- Users receive a unique referral link.
-- User can receive bonuse buy clicking button at configurable time intervals (default: every 24 hours).
+For example code in myLib.js:
 
-And many more explore it with a enthusiasm.
+    function hello(){ Bot.sendMessage("Hello from lib!") }
+    function goodbye(name){ Bot.sendMessage("Goodbye, " + name) }
 
-📖 [More about Libraries](https://help.bots.business/git/library)  
+    publish({
+      sayHello: hello,
+      sayGoodbyeTo: goodbye
+    })
 
----
-## ⚙️ Configuration 
+then you can run in any bot's command:
 
-![Bot Interface](https://i.ibb.co/fYcFrRkW/4-20250322-204535-0001.jpg) 
+    Libs.myLib.hello()
+    Libs.myLib.sayGoodbyeTo("Alice")
 
-You can easily configure your bot after setup by giving the command `/adminPanel` then it will give a admin pannel to save your credentials for the bot.
+See [more](https://help.bots.business/git/library)
 
-- There can be three public channel 2 in force join and one payment alert channel.
-- There is one private/public channel which eill handle payment request it is joined only by admin. You can use chatID of chat if you dont have public channel.
-- Bouns Time Interval can be changed.(Default is 24hrs)
-- Set Your own customised currency.
----
+## Other bots example
+See other bots examples in the [github](https://github.com/bots-business?utf8=✓&tab=repositories&q=&type=public&language=javascript) or in the [Bot Store](https://bots.business/)
 
-## 🖼️ Screenshots  
-### Bot Interface:  
 
-![Bot Interface1](https://i.ibb.co/BHH42TxC/IMG-20250322-204853-525.jpg)
+## Other help
+[Help.bots.business](https://help.bots.business)
 
----
+## API
+See [API](https://api.bots.business/docs#/docs/summary)
 
-## 🌐 More Resources  
-🔹 [Getting Started Guide](https://help.bots.business/getting-started)  
-🔹 [Full API Documentation](https://api.bots.business/docs#/docs/summary)  
-🔹 [Explore Other Bots](https://bots.business/)  
 
----
-
-This Bot is participating in BB contest.
+![](https://bots.business/images/web-logo.png)

@@ -1,14 +1,12 @@
 /*CMD
   command: /setWithdrawalStatus
   help: 
-  need_reply: true
+  need_reply: false
   auto_retry_time: 
   folder: Admin Panel
 
   <<ANSWER
-*🏧 Send the mode which you want to set as withdrawal status from the options below 👇
 
-👉 Options :* `On` */* `Off`
   ANSWER
 
   <<KEYBOARD
@@ -18,42 +16,35 @@
   group: 
 CMD*/
 
-var admin = Bot.getProperty("admin")
-var users = user.telegramid
-var botLink = "@" + bot.name
+if (request.data) {
+  var chatID = request.message.chat_id
+  var messageID = request.message.message_id
+
+  Api.deleteMessage({
+    chat_id: chatID,
+    message_id: messageID
+  })
+}
+var admin = Bot.getProperty("admin");
+var users = user.telegramid;
 
 if (users === admin) {
-  var withdrawal = message
+  var currentStatus = Bot.getProperty("withdrawalStatus", "Off"); // Default to "Off"
+  var newStatus = currentStatus === "On" ? "Off" : "On"; // Toggle status
 
-  if (withdrawal === "On" || withdrawal === "Off") {
-    Bot.setProperty("withdrawalStatus", withdrawal, "string")
+  Bot.setProperty("withdrawalStatus", newStatus, "string");
 
-    var text =
-      "<b>🏧 Withdrawal status set to :</b> <code>" + withdrawal + "</code>"
-
-    Api.sendMessage({
-      text: text,
-      parse_mode: "html"
-    })
-
-    Bot.runCommand("/adminPanel")
-  } else {
-    var notText =
-      "<i>⚠️ Send only</i> <code>On</code> <i>or</i> <code>Off</code>."
-
-    Api.sendMessage({
-      text: notText,
-      parse_mode: "html"
-    })
-
-    Bot.runCommand("/setWithdrawalStatus")
-  }
+  Api.answerCallbackQuery({
+    callback_query_id: request.id,
+    text: "Withdrawal Status Changed To: " + newStatus,
+    show_alert: true
+  });
+  Bot.runCommand("/adminPanel")
 } else {
-  var notAdminText = "<i>⚠️ You're not the admin of " + botLink + ".</i>"
-
-  Api.sendMessage({
-    text: notAdminText,
-    parse_mode: "html"
-  })
+  Api.answerCallbackQuery({
+    callback_query_id: request.id,
+    text: "⚠️ You are not the admin!",
+    show_alert: true
+  });
 }
 

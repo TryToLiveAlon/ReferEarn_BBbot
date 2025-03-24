@@ -58,6 +58,18 @@ if (maintenanceStatus === "On") {
   })
   return
 }
+var withdrawalStatus = Bot.getProperty("withdrawalStatus")
+
+if (withdrawalStatus === "Off") {
+  var onText =
+    "<i>⚙️ Bot withdrawal Is off wait for admin to allow for withdrawals.</i>"
+
+  Api.sendMessage({
+    text: onText,
+    parse_mode: "html"
+  })
+  return
+}
 
 var wallet = User.getProperty("wallet")
 

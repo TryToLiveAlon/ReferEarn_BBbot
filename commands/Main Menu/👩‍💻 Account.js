@@ -75,13 +75,13 @@ var buttons = [
 var userName = user.first_name
 var username = "@" + user.username
 var userID = user.telegramid
-var userLink = "<a href='tg://user?id=" + userID + "'>" + userName + "</a>"
+var userLink = `<a href="tg://user?id=${userID}">Click Here</a>`;
 var currency = Bot.getProperty("currency")
 var balance = Libs.ResourcesLib.userRes("balance")
 var text = `<b>👤 user account info:</b>
 
 🧒 <b>Name:</b> ${userName}  
-🔗 <b>Profile:</b> <a href="${userLink}">Click Here</a>  
+🔗 <b>Profile:</b> ${userLink} 
 💬 <b>Username:</b> <code>${username}</code>  
 🆔 <b>User ID:</b> <code>${userID}</code>  
 
@@ -97,5 +97,4 @@ Api.sendPhoto({
     },
   parse_mode: "html"
 })
-
 

@@ -61,7 +61,7 @@ if (maintenanceStatus === "On") {
 
 var status = Libs.ResourcesLib.anotherChatRes("status", "global")
 var botLink = "@" + bot.name
-var photo = "https://i.ibb.co/VpBb9vqS/statistics-colorful-horizontal-banner-vector-18715864.webp"
+var photo = "https://i.ibb.co/9xyNLfS/IMG-20250324-210425-223.jpg"
 var caption =
   "<b>📊 Statistics of " +
   botLink +

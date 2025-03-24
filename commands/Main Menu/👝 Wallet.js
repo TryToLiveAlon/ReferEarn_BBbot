@@ -60,7 +60,7 @@ if (maintenanceStatus === "On") {
 }
 
 var currency = Bot.getProperty("currency")
-var wallet = User.getProperty("wallet")
+var wallet = User.getProperty("wallet") || "Not Set ❌"
 var text =
   "<b>👝 Your</b> <code>" +
   currency +
