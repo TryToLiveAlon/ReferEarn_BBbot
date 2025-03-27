@@ -35,6 +35,7 @@ var admin = your-chat-id
 ```
 
 Dont know your chatID click on [@chat_id_echo_bot](https://t.me/chat_id_echo_bot)
+6. Execute the command /adminLogin and you are good to go.
 🎉 Now, your bot is live on Telegram!  
 
 ---
