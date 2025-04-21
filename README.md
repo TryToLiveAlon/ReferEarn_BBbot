@@ -73,6 +73,11 @@ You can easily configure your bot after setup by giving the command `/adminPanel
 
 ---
 
+## Ownership 
+I herby declare that this bot is owned by [@TryToliveAlon_Backup](https://t.me/TryToliveAlon_Backup)
+
+---
+
 ## 🌐 More Resources  
 🔹 [Getting Started Guide](https://help.bots.business/getting-started)  
 🔹 [Full API Documentation](https://api.bots.business/docs#/docs/summary)  
